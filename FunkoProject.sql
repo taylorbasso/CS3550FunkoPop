@@ -59,12 +59,12 @@ INSERT Ratings (fk_ItemId, Rating, Comment, CommentDate) VALUES (1, 5, 'My Best 
 
 
 --Tests--
-SELECT * FROM ITEMS
+SELECT * FROM Items
 SELECT * FROM Categories
 SELECT * FROM Fandoms
 SELECT * FROM Ratings
-SELECT * FROM ITEMS it JOIN Categories ca ON it.fk_CategoryId = ca.pk_CategoryId WHERE ca.pk_CategoryId = 4
-SELECT * FROM ITEMS it JOIN Categories ca ON it.fk_CategoryId = ca.pk_CategoryId WHERE it.fk_FandomId = 1
+SELECT * FROM Items it JOIN Categories ca ON it.fk_CategoryId = ca.pk_CategoryId WHERE ca.pk_CategoryId = 4
+SELECT * FROM Items it JOIN Categories ca ON it.fk_CategoryId = ca.pk_CategoryId WHERE it.fk_FandomId = 1
 SELECT * FROM Ratings WHERE fk_ItemId = 1
 --Tests--
 
