@@ -72,7 +72,9 @@ SELECT * FROM Ratings
 SELECT * FROM Items it JOIN Categories ca ON it.CategoryId = ca.CategoryId WHERE ca.CategoryId = 4
 SELECT * FROM Items it JOIN Categories ca ON it.CategoryId = ca.CategoryId WHERE it.FandomId = 1
 
+--Taylors query which may be wrong
 SELECT
+	it.ItemId AS 'Item ID',
 	ca.CategoryName AS 'Category',
 	fa.FandomName AS 'Fandom',
 	it.ItemName AS 'Item Name',
@@ -86,6 +88,12 @@ FROM
 		ON it.CategoryId = ca.CategoryId
 	LEFT JOIN Ratings ra
 		ON it.ItemId = ra.ItemId
+GROUP BY
+	it.ItemId,
+	ca.CategoryName,
+	fa.FandomName,
+	it.ItemName,
+	it.Price
 
 --Tests--
 
