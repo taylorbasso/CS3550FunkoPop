@@ -1,3 +1,9 @@
+--DROP THAT ISH
+DROP TABLE IF EXISTS Ratings;
+DROP TABLE IF EXISTS Items;
+DROP TABLE IF EXISTS Fandoms;
+DROP TABLE IF EXISTS Categories;
+
 CREATE TABLE Fandoms (
 	FandomId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	FandomName varchar(100) NOT NULL
@@ -67,10 +73,11 @@ SELECT * FROM Items it JOIN Categories ca ON it.CategoryId = ca.CategoryId WHERE
 SELECT * FROM Items it JOIN Categories ca ON it.CategoryId = ca.CategoryId WHERE it.FandomId = 1
 
 SELECT
-	ca.CategoryName,
-	fa.FandomName,
-	it.ItemName,
-	it.Price
+	ca.CategoryName AS 'Category',
+	fa.FandomName AS 'Fandom',
+	it.ItemName AS 'Item Name',
+	it.Price,
+	AVG(ra.Rating) AS 'Average Rating'
 FROM
 	Items it
 	INNER JOIN Fandoms fa
@@ -87,7 +94,3 @@ DROP TABLE Ratings;
 DROP TABLE Items;
 DROP TABLE Fandoms;
 DROP TABLE Categories;
-
-SELECT
-	*
-FROM
