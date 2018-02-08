@@ -1,4 +1,5 @@
 --DROP THAT ISH
+DROP TABLE IF EXISTS Images;
 DROP TABLE IF EXISTS Ratings;
 DROP TABLE IF EXISTS Items;
 DROP TABLE IF EXISTS Fandoms;
@@ -6,19 +7,19 @@ DROP TABLE IF EXISTS Categories;
 
 CREATE TABLE Fandoms (
 	FandomId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	FandomName varchar(100) NOT NULL
+	FandomName varchar(128) NOT NULL
 )
 
 CREATE TABLE Categories (
 	CategoryId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	CategoryName varchar(100) NOT NULL
+	CategoryName varchar(128) NOT NULL
 )
 
 CREATE TABLE Items (
 	ItemId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	FandomId INT NOT NULL REFERENCES Fandoms(FandomId),
 	CategoryId INT NOT NULL REFERENCES Categories(CategoryId),
-	ItemName varchar(100) NOT NULL,
+	ItemName varchar(128) NOT NULL,
 	Active BIT DEFAULT (1),
 	Price Decimal(19,2) NOT NULL
 )
@@ -29,6 +30,12 @@ CREATE TABLE Ratings (
 	Rating INT NOT NULL,
 	Comment TEXT,
 	CommentDate DATETIME DEFAULT(GETDATE())
+)
+
+CREATE TABLE Images (
+	ImageId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	ItemId INT NOT NULL REFERENCES Items(ItemId),
+	ImageLocation varchar(256) NOT NULL
 )
 
 --Inserts
@@ -63,12 +70,15 @@ INSERT Ratings (ItemId, Rating, Comment, CommentDate) VALUES (1, 3, 'Fancy Lil L
 INSERT Ratings (ItemId, Rating, Comment, CommentDate) VALUES (1, 3, 'My New Homie', GetDate())
 INSERT Ratings (ItemId, Rating, Comment, CommentDate) VALUES (1, 5, 'My Best Friend', GetDate())
 
+INSERT INTO Images VALUES (1, '/path/to/image/on/server.jpg');
+INSERT INTO Images VALUES (1, 'https://website.com/path/to/img.jpg');
 
 --Tests--
 SELECT * FROM Items
 SELECT * FROM Categories
 SELECT * FROM Fandoms
 SELECT * FROM Ratings
+SELECT * FROM Images
 SELECT * FROM Items it JOIN Categories ca ON it.CategoryId = ca.CategoryId WHERE ca.CategoryId = 4
 SELECT * FROM Items it JOIN Categories ca ON it.CategoryId = ca.CategoryId WHERE it.FandomId = 1
 
@@ -102,3 +112,4 @@ DROP TABLE Ratings;
 DROP TABLE Items;
 DROP TABLE Fandoms;
 DROP TABLE Categories;
+DROP TABLE Images;
