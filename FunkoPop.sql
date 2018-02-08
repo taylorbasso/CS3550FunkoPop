@@ -57,7 +57,7 @@ INSERT Items (CategoryId, FandomId, ItemName, Active, Price) VALUES (4, 3, 'Clap
 INSERT Items (CategoryId, FandomId, ItemName, Active, Price) VALUES (4, 1, 'Vault Boy', 1, 12.99)
 INSERT Items (CategoryId, FandomId, ItemName, Active, Price) VALUES (5, 4, 'Bombshells', 1, 12.99)
 INSERT Items (CategoryId, FandomId, ItemName, Active, Price) VALUES (6, 5, 'Cuphead and Bosses', 1, 24.99)
-INSERT Items (CategoryId, FandomId, ItemName, Active, Price) VALUES (1, 6, 'T-60 Power Armor', 0, 12.99)
+INSERT Items (CategoryId, FandomId, ItemName, Active, Price) VALUES (1, 6, 'Krusty the Clown', 0, 12.99)
 
 INSERT Ratings (ItemId, Rating, Comment, CommentDate) VALUES (1, 3, 'Fancy Lil Lad', GetDate())
 INSERT Ratings (ItemId, Rating, Comment, CommentDate) VALUES (1, 3, 'My New Homie', GetDate())
